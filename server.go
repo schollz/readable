@@ -71,6 +71,9 @@ func generateHTML(url string) (html string) {
 	}
 	var target Response
 	json.NewDecoder(resp.Body).Decode(&target)
-	html = `<html><head><style>body{margin:1em auto;max-width:40em;padding:0 .62em;font:1.2em/1.62 sans-serif;}h1,h2,h3{line-height:1.2;}@media print{body{max-width:none}}</style></head><body>` + target.Content + `</body></html>`
+	html = `<html><head><style>img {
+   height: auto;
+   width:100%;
+}body{margin:1em auto;max-width:40em;padding:0 .62em;font:1.2em/1.62 sans-serif;}h1,h2,h3{line-height:1.2;}@media print{body{max-width:none}}</style></head><body>` + target.Content + `</body></html>`
 	return
 }
