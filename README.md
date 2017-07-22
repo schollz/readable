@@ -1,7 +1,7 @@
 # readability-bookmarklet
 A simple link you can drag into your bookmarks that will make any page readable
 
-Here is an example:
+Here is an example [from dotsies.org](http://dotsies.org/):
 
 ```html
 <a onclick="alert('Drag this link to your browser\'s toolbar to create the bookmarklet.'); return false;" href="javascript:
