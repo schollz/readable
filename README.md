@@ -21,7 +21,6 @@ xhr.send(data);
  })()">Make readable</a>
 ```
 
-<a onclick="alert('Drag this link to your browser\'s toolbar to create the bookmarklet.'); return false;" href="javascript: !function(){var e=new XMLHttpRequest;e.open("POST","https://readable.schollz.com/",!0),e.setRequestHeader("Content-type","application/json"),e.onreadystatechange=function(){if(4===e.readyState&&200===e.status){var t=JSON.parse(e.responseText);document.write(t.html),document.close()}};var t=JSON.stringify({url:window.location.href});e.send(t)}();">Make readable</a>
 
 ## Server
 

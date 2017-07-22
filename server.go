@@ -3,7 +3,6 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"log"
 	"net/http"
 	"os"
 
@@ -14,6 +13,14 @@ func main() {
 	fmt.Println(os.ExpandEnv("$MERCURY_API_KEY"))
 	router := gin.Default()
 
+	router.GET("/", func(c *gin.Context) {
+		c.Data(http.StatusOK, "text/html; charset=utf-8", []byte(`
+<html><head></head><body>
+<p>Drag this link to your browser's toolbar to create the bookmarklet:</p>
+<a onclick="alert('Drag this link to your browser\'s toolbar to create the bookmarklet.'); return false;" href='javascript: !function(){var e=new XMLHttpRequest;e.open("POST","https://readable.schollz.com/",!0),e.setRequestHeader("Content-type","application/json"),e.onreadystatechange=function(){if(4===e.readyState&&200===e.status){var t=JSON.parse(e.responseText);document.write(t.html),document.close()}};var t=JSON.stringify({url:window.location.href});e.send(t)}();'>Make readable</a>
+		
+		</body></html>`))
+	})
 	router.POST("/", func(c *gin.Context) {
 		c.Writer.Header().Set("Content-Type", "application/json")
 		c.Writer.Header().Set("Access-Control-Allow-Origin", "*")
@@ -64,7 +71,6 @@ func generateHTML(url string) (html string) {
 	}
 	var target Response
 	json.NewDecoder(resp.Body).Decode(&target)
-	log.Printf("%v\n", target)
 	html = `<html><head><style>body{margin:1em auto;max-width:40em;padding:0 .62em;font:1.2em/1.62 sans-serif;}h1,h2,h3{line-height:1.2;}@media print{body{max-width:none}}</style></head><body>` + target.Content + `</body></html>`
 	return
 }
