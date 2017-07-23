@@ -15,7 +15,7 @@ print(url_hash)
 os.mkdir('test-pages/{}'.format(url_hash))
 os.system('wget "{}" -O test-pages/{}/1.html'.format(url, url_hash))
 os.system(
-    'cat test-pages/{url_hash}/1.html | pandoc -f html -t markdown | pandoc -f markdown -t html > test-pages/{url_hash}/2.html'.format(url_hash=url_hash))
+    'cat test-pages/{url_hash}/1.html | pandoc -f html -t html > test-pages/{url_hash}/2.html'.format(url_hash=url_hash))
 os.system(
     'tidy -utf8 -o test-pages/{url_hash}/3.html test-pages/{url_hash}/2.html'.format(url_hash=url_hash))
 os.system(
