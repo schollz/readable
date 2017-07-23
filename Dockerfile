@@ -1,4 +1,4 @@
-FROM ubuntu:17.04
+FROM node:slim
 
 RUN apt-get update
 RUN apt-get install -y wget
@@ -20,21 +20,21 @@ RUN rm -rf html2xhtml*
 
 RUN apt-get install -y pandoc
 RUN apt-get install -y python3
-RUN apt-get install -y nodejs
-RUN apt-get install -y npm
 
-RUN apt-get install -y git
-RUN git clone https://github.com/mozilla/readability
-WORKDIR /root/readability
+RUN wget https://github.com/schollz/readability/archive/v0.1.tar.gz
+RUN tar -xvzf v0.1.tar.gz
+RUN rm v0.1.tar*
+WORKDIR /root/readability-0.1
 RUN npm install
-WORKDIR /root/readability/test
+WORKDIR /root/readability-0.1/test
 
-RUN apt-get install nodejs-legacy 
-
-COPY run.py /root/readability/test/run.py
+COPY run.py /root/readability-0.1/test/run.py
 RUN echo "OK"
 
 ENV LANG C.UTF-8
 ENV LC_ALL C.UTF-8
+
+RUN apt-get purge -y make gcc
+RUN apt-get autoremove -y
 
 ENTRYPOINT ["/usr/bin/python3","run.py"]
