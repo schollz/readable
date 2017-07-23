@@ -1,30 +1,36 @@
-# readability-bookmarklet
-A simple link you can drag into your bookmarks that will make any page readable
+# Readable 
 
+A bookmarklet that makes pages readable :link: :book:.
 
-```html
-<a onclick="alert('Drag this link to your browser\'s toolbar to create the bookmarklet.'); return false;" href="javascript: (function () {
+This is like a self-hosted version of [Pocket](https://getpocket.com/), or [Firefox Reader View](https://support.mozilla.org/en-US/kb/firefox-reader-view-clutter-free-web-pages), or any other extension that helps you read an article on the web when using a Desktop browser.
 
-var xhr = new XMLHttpRequest();
-xhr.open("POST", "https://readable.schollz.com/", true);
-xhr.setRequestHeader("Content-type", "application/json");
-xhr.onreadystatechange = function () {
-    if (xhr.readyState === 4 && xhr.status === 200) {
-        var json = JSON.parse(xhr.responseText);
-        document.write(json.html);
-        document.close();
-    }
-};
-var data = JSON.stringify({"url": window.location.href});
-xhr.send(data);
+Demo
+=====
 
- })()">Make readable</a>
-```
+Try it out at [readable.schollz.com](https://readable.schollz.com). 
 
+Getting Started
+===============
 
-## Server
+## Install
+
+If you have Go installed:
 
 ```
-$ export MERCURY_API_KEY=XX
-$ go build && ./readability-bookmarklet
+go get github.com/schollz/readable
 ```
+
+## Run
+
+First [get a Merucry Web Parser API Key](https://mercury.postlight.com/web-parser/).
+
+Then use
+
+```shell
+readable -key YOUR_API_KEY
+```
+
+License
+=======
+
+MIT
