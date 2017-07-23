@@ -26,13 +26,30 @@ go get github.com/schollz/readable
 
 ## Run
 
-First [get a Merucry Web Parser API Key](https://mercury.postlight.com/web-parser/).
+First [get a Mercury Web Parser API Key](https://mercury.postlight.com/web-parser/).
 
 Then use
 
 ```shell
-readable -key YOUR_API_KEY
+$ readable -key YOUR_API_KEY
 ```
+
+## Self-hosted Readability
+
+Instead of using the Mercury Web Parser API, you can use [Mozilla's Readability](https://github.com/mozilla/readability) running on your own machine.
+
+You will need to install Docker and build the image.
+
+```
+$ docker build -t readable .
+```
+
+Then you can run `readable` without the key to use the self-hosted Docker image:
+
+```
+$ readable
+```
+
 
 License
 =======

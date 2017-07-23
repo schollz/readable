@@ -32,7 +32,6 @@ WORKDIR /root/readability/test
 RUN apt-get install nodejs-legacy 
 
 RUN echo "OK"
-
 COPY run.py /root/readability/test/run.py
 
 ENV LANG C.UTF-8
