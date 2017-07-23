@@ -55,7 +55,7 @@ func main() {
 <strong>
 <a onclick="alert('Drag this link to your browser\'s toolbar to create the bookmarklet.'); return false;" href='javascript: !function(){var url="`+serverName+`/" + window.location.href; window.location.href=url;}();'>Make readable</a></strong>
 <p>When you are on a news site, click the link to make it readable.</p>
-<p>For more information, or to run your own server, check out <a href="https://github.com/schollz/readability-bookmarklet">the source</a>.</p><p>Powered by <a href="https://mercury.postlight.com/web-parser/">Mercury Web Parser</a>.</p>
+<p>For more information, or to run your own server, check out <a href="https://github.com/schollz/readability-bookmarklet">the source</a>.</p>
 </center>
 </body></html>`))
 			return
