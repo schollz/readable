@@ -4,10 +4,14 @@ A bookmarklet that makes pages readable :link: :book:.
 
 This is like a self-hosted version of [Pocket](https://getpocket.com/), or [Firefox Reader View](https://support.mozilla.org/en-US/kb/firefox-reader-view-clutter-free-web-pages), or any other extension that helps you read an article on the web when using a Desktop browser.
 
+![Example of parsing website](http://i.imgur.com/k5ArA0A.gif)
+
 Demo
 =====
 
 Try it out at [readable.schollz.com](https://readable.schollz.com). 
+
+
 
 Getting Started
 ===============
