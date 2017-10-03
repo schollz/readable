@@ -93,8 +93,8 @@ func generateHTMLSelf(url string) (target Response) {
 	dir, _ := filepath.Abs(filepath.Join(".", "cache"))
 	fmt.Println(dir)
 	log.Println("Attempting docker")
-	log.Println("docker", "run", "-v", dir+":/data", "-t", "readable", url)
-	_, err := exec.Command("docker", "run", "-v", dir+":/data", "-t", "readable", url).Output()
+	log.Println("docker", "run", "--rm", "-v", dir+":/data", "-t", "readable", url)
+	_, err := exec.Command("docker", "run", "--rm", "-v", dir+":/data", "-t", "readable", url).Output()
 	if err != nil {
 		log.Print(err)
 	}
