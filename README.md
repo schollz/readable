@@ -55,6 +55,14 @@ Then you can run `readable` without specifying a `key` to use the self-hosted Do
 $ readable
 ```
 
+You can also just use the image pretty easily:
+
+```
+$ docker run --rm -v `pwd`:/data -t readable URL
+```
+
+which will result in a file `some_hash.json` which contains the results.
+
 
 License
 =======
