@@ -39,7 +39,7 @@ RUN chmod +x /root/readability-master/test/run.sh
 ENV LANG C.UTF-8
 ENV LC_ALL C.UTF-8
 
-RUN apt-get purge -y make gcc zip unzip wget
+RUN apt-get purge -y make gcc zip unzip
 RUN apt-get autoremove -y
 
 ENTRYPOINT ["./run.sh"]
