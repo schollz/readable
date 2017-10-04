@@ -1,64 +1,43 @@
 # Readable 
 
-A bookmarklet that makes pages readable :link: :book:.
+Making web pages readable in a browser and in the command line :link: :book:.
 
-This is like a self-hosted version of [Pocket](https://getpocket.com/), or [Firefox Reader View](https://support.mozilla.org/en-US/kb/firefox-reader-view-clutter-free-web-pages), or any other extension that helps you read an article on the web when using a Desktop browser. But, instead of a browser extension that you have to install, its just a bookmark you can keep on your toolbar.
+This is like a self-hosted version of [Pocket](https://getpocket.com/), or [Firefox Reader View](https://support.mozilla.org/en-US/kb/firefox-reader-view-clutter-free-web-pages), or any other extension that helps you read an article on the web when using a Desktop browser. But, instead of a browser extension that you have to install, its just a bookmark you can keep on your toolbar or a single line of bash you can run at the terminal.
 
-Websites are parsed with either [the free Mercury Web Parser API](https://mercury.postlight.com/web-parser/) or a self-hosted version of [Mozilla's Readability program](https://github.com/mozilla/readability).
+Websites are parsed with either [the free Mercury Web Parser API](https://mercury.postlight.com/web-parser/) or a self-hosted version of [Mozilla's *readability* package](https://github.com/mozilla/readability). The *readability* package was trasnformed into a Docker image that automatically performs some UTF-8 conversions and tidying.
 
-Demo
-=====
+# Demo
 
 Try it out at [readable.schollz.com](https://readable.schollz.com). 
-
 
 <center>
 <img src="http://i.imgur.com/k5ArA0A.gif" alt="Example of parsing a website">
 </center>
 
+# Quickstart
 
-# Getting Started
+First [download the latest release of *readable* for your OS](https://github.com/schollz/readable/releases/latest). Alternatively, if you have Go installed you can do `go get github.com/schollz/readable`.
 
+You can run *readable* with or without Docker.
 
-## Install
+## with Docker
 
-First install *readable*. Download Go and run:
-
-```
-go get github.com/schollz/readable
-```
-
-To run you can use either Docker (to self-host the web parser that uses [Mozilla's Readability](https://github.com/mozilla/readability)) or use Mercury API (which is free).
-
-## Run (Docker)
-
-First pull the latest Docker image.
-
-```
+```shell
 $ docker pull schollz/readable
+$ ./readable
 ```
 
-_Note_: Alternatively you can build it yourself using `docker build -t readable .` in the main source). 
+## without Docker 
 
-Then to run, just do
-
-```
-$ readable
-```
-
-_Note_: If you built yourself, add `-docker readable` to specify your own image.
-
-## Run (using Mercury Web Parser API)
-
-First [get a Mercury Web Parser API Key](https://mercury.postlight.com/web-parser/).
-
-Then use
+Get `YOUR_API_KEY` Mercury Web Parser API Key [from here (its free)](https://mercury.postlight.com/web-parser/).
 
 ```shell
 $ readable -key YOUR_API_KEY
 ```
 
 # Advanced usage
+
+The Docker image in this repo allows you to manipulate websites into readable ones. You can do some neat things like the following:
 
 ## Read articles from the command line
 
