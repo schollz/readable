@@ -44,17 +44,34 @@ The Docker image in this repo allows you to manipulate websites into readable on
 You can use the Docker image to directly read articles from the command line:
 
 ```
-$ docker run --rm -t schollz/readable URL | more
-```
+$ URL=http://www.cnn.com/2017/10/03/world/nobel-physics-prize-2017/index.html
+$ docker run --rm -t schollz/readable $URL | more
 
-where `URL` is the URL of some article that you want to read.
+----------------------------------------------------------
+Nobel Prize in Physics goes to 'black hole telescope' trio
+----------------------------------------------------------
+
+Story highlights
+
+-   The development proves Einstein's prediction of gravitational waves
+-   More than 1,000 people worked on the technology over four decades
+
+(CNN)The 2017 Nobel Prize in Physics has been awarded to Rainer Weiss,
+Barry C. Barish and Kip S. Thorne for their detection of gravitational
+waves, a development scientists believe could give vital clues to the
+origins of the universe.
+...
+```
 
 ## Download readable data to computer
 
 You can use the Docker image to download the parsed contents into a json file:
 
-```
-$ docker run --rm -v `pwd`:/data -t schollz/readable URL data.json
+```shell
+$ URL=http://www.cnn.com/2017/10/03/world/nobel-physics-prize-2017/index.html
+$ docker run --rm -v `pwd`:/data -t schollz/readable $URL data.json
+$ cat data.json | jq .title
+"Nobel Prize in Physics goes to 'black hole telescope' trio"
 ```
 
 where `URL` is the URL of some article that you want to read. This will result in a file `data.json` which contains the results.

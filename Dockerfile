@@ -33,14 +33,14 @@ WORKDIR /root/readability-master
 RUN npm install
 WORKDIR /root/readability-master/test
 
-RUN echo "hi"
+
+RUN apt-get purge -y make gcc zip unzip
+RUN apt-get autoremove -y
+
 COPY run.sh /root/readability-master/test/run.sh
 RUN chmod +x /root/readability-master/test/run.sh
 
 ENV LANG C.UTF-8
 ENV LC_ALL C.UTF-8
-
-RUN apt-get purge -y make gcc zip unzip
-RUN apt-get autoremove -y
 
 ENTRYPOINT ["./run.sh"]
