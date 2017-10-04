@@ -1,7 +1,7 @@
 FROM node:slim
 
 RUN apt-get update
-RUN apt-get install -y wget
+RUN apt-get install -y wget jq
 RUN wget https://github.com/htacg/tidy-html5/releases/download/5.4.0/tidy-5.4.0-64bit.deb
 RUN dpkg --install tidy-5.4.0-64bit.deb
 RUN rm -rf tidy-*
@@ -31,9 +31,10 @@ WORKDIR /root/readability-master
 RUN npm install
 WORKDIR /root/readability-master/test
 
-RUN echo "hi4"
+RUN echo "hi8"
 COPY run.sh /root/readability-master/test/run.sh
 RUN chmod +x /root/readability-master/test/run.sh
+
 
 ENV LANG C.UTF-8
 ENV LC_ALL C.UTF-8

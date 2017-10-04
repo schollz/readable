@@ -58,10 +58,16 @@ $ readable
 You can also just use the image pretty easily:
 
 ```
-$ docker run --rm -v `pwd`:/data -t readable URL
+$ docker run --rm -v `pwd`:/data -t readable URL json
 ```
 
 which will result in a file `some_hash.json` which contains the results.
+
+Or you can use it to just read some URL
+
+```
+$ docker run --rm -t readable URL | more
+```
 
 
 License

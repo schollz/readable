@@ -13,8 +13,13 @@ then
 	pandoc -f html -t plain test-pages/foo/expected.html
 else
 	chmod -R 0755 /data
-	cat test-pages/foo/expected-metadata.json  | grep title | sed 's/"//g' | sed 's/title://g' | sed 's/   //g' | sed 's/,//g' >> '{"title":"' >> /data/`echo -n "$1" | md5sum | awk '{print $1}'`.title
-	cat test-pages/foo/expected.html >> /data/`echo -n "$1" | md5sum | awk '{print $1}'`.html
+	cp test-pages/foo/expected-metadata.json temp.json
+	sed -i 's/title/content":"","title/g' temp.json
+	echo '. as $file' > content.jq
+	echo '| $json' >> content.jq
+	echo '| (.content = $file + "\n" + .content)' >> content.jq
+	jq -R -s --argfile json temp.json -f content.jq test-pages/foo/expected.html > temp2.json
+	mv temp2.json /data/`echo -n "$1" | md5sum | awk '{print $1}'`.json
 fi
 
 
