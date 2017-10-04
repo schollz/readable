@@ -10,9 +10,7 @@ Websites are parsed with either [the free Mercury Web Parser API](https://mercur
 
 Try it out at [readable.schollz.com](https://readable.schollz.com). 
 
-<center>
-<img src="http://i.imgur.com/k5ArA0A.gif" alt="Example of parsing a website">
-</center>
+[![Readable example](https://user-images.githubusercontent.com/6550035/31201819-59d78922-a91d-11e7-8bc5-b9b2668d0123.png)](https://readable.schollz.com)
 
 # Quickstart
 
