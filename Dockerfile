@@ -18,18 +18,20 @@ RUN make install
 WORKDIR /root
 RUN rm -rf html2xhtml*
 
-RUN apt-get install -y pandoc
-RUN apt-get install -y python3
+# Install Pandoc
+RUN wget https://github.com/jgm/pandoc/releases/download/1.19.2.1/pandoc-1.19.2.1-1-amd64.deb
+RUN dpkg --install pandoc*deb
 
-RUN wget https://github.com/schollz/readability/archive/v0.1.tar.gz
-RUN tar -xvzf v0.1.tar.gz
-RUN rm v0.1.tar*
-WORKDIR /root/readability-0.1
+# Install readability
+RUN apt-get install -y zip
+RUN wget https://github.com/mozilla/readability/archive/master.zip
+RUN unzip master.zip
+RUN rm master.zip
+WORKDIR /root/readability-master
 RUN npm install
-WORKDIR /root/readability-0.1/test
+WORKDIR /root/readability-master/test
 
-COPY run.py /root/readability-0.1/test/run.py
-RUN echo "OK"
+COPY run.sh /root/readability-master/test/run.sh
 
 ENV LANG C.UTF-8
 ENV LC_ALL C.UTF-8
