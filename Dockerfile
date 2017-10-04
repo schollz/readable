@@ -31,7 +31,8 @@ WORKDIR /root/readability-master
 RUN npm install
 WORKDIR /root/readability-master/test
 
-COPY run.py /root/readability-master/test/run.py
+COPY run.sh /root/readability-master/test/run.sh
+RUN chmod +x /root/readability-master/test/run.sh
 
 ENV LANG C.UTF-8
 ENV LC_ALL C.UTF-8
@@ -39,6 +40,4 @@ ENV LC_ALL C.UTF-8
 RUN apt-get purge -y make gcc
 RUN apt-get autoremove -y
 
-RUN apt-get install -y python3
-
-ENTRYPOINT ["/usr/bin/python3","run.py"]
+ENTRYPOINT ["./run.sh"]

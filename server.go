@@ -98,8 +98,10 @@ func generateHTMLSelf(url string) (target Response) {
 	if err != nil {
 		log.Print(err)
 	}
-	data, _ := ioutil.ReadFile(filepath.Join(".", "cache", GetMD5Hash(url)+".json"))
-	json.Unmarshal(data, &target)
+	data1, _ := ioutil.ReadFile(filepath.Join(".", "cache", GetMD5Hash(url)+".title"))
+	target.Title = string(data1)
+	data2, _ := ioutil.ReadFile(filepath.Join(".", "cache", GetMD5Hash(url)+".html"))
+	target.Content = string(data2)
 	return
 }
 
