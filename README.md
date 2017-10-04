@@ -17,16 +17,36 @@ Try it out at [readable.schollz.com](https://readable.schollz.com).
 </center>
 
 
-Getting Started
-===============
+# Getting Started
+
 
 ## Install
 
-If you have Go installed:
+First install *readable*. Download Go and run:
 
 ```
 go get github.com/schollz/readable
 ```
+
+To run you can use either Docker (to self-host the web parser that uses [Mozilla's Readability](https://github.com/mozilla/readability)) or use Mercury API (which is free).
+
+## Run (Docker)
+
+First pull the latest Docker image.
+
+```
+$ docker pull schollz/readable
+```
+
+_Note_: Alternatively you can build it yourself using `docker build -t readable .` in the main source). 
+
+Then to run, just do
+
+```
+$ readable
+```
+
+_Note_: If you built yourself, add `-docker readable` to specify your own image.
 
 ## Run (using Mercury Web Parser API)
 
@@ -38,37 +58,27 @@ Then use
 $ readable -key YOUR_API_KEY
 ```
 
-## Run (using self-hosted Web Parser)
+# Advanced usage
 
-Instead of using the Mercury Web Parser API, you can use [Mozilla's Readability](https://github.com/mozilla/readability) running on your own machine.
+## Read articles from the command line
 
-You will need to [install Docker](https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/). Then to build the Docker image, use
-
-```
-$ cd $GOPATH/src/github.com/schollz/readable
-$ docker build -t readable .
-```
-
-Then you can run `readable` without specifying a `key` to use the self-hosted Docker image for parsing websites:
+You can use the Docker image to directly read articles from the command line:
 
 ```
-$ readable
+$ docker run --rm -t schollz/readable URL | more
 ```
 
-You can also just use the image pretty easily:
+where `URL` is the URL of some article that you want to read.
+
+## Download readable data to computer
+
+You can use the Docker image to download the parsed contents into a json file:
 
 ```
-$ docker run --rm -v `pwd`:/data -t readable URL json
+$ docker run --rm -v `pwd`:/data -t schollz/readable URL data.json
 ```
 
-which will result in a file `some_hash.json` which contains the results.
-
-Or you can use it to just read some URL
-
-```
-$ docker run --rm -t readable URL | more
-```
-
+where `URL` is the URL of some article that you want to read. This will result in a file `data.json` which contains the results.
 
 License
 =======

@@ -19,7 +19,7 @@ else
 	echo '| $json' >> content.jq
 	echo '| (.content = $file + "\n" + .content)' >> content.jq
 	jq -R -s --argfile json temp.json -f content.jq test-pages/foo/expected.html > temp2.json
-	mv temp2.json /data/`echo -n "$1" | md5sum | awk '{print $1}'`.json
+	mv temp2.json /data/$2
 fi
 
 

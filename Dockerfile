@@ -33,6 +33,7 @@ WORKDIR /root/readability-master
 RUN npm install
 WORKDIR /root/readability-master/test
 
+RUN echo "hi"
 COPY run.sh /root/readability-master/test/run.sh
 RUN chmod +x /root/readability-master/test/run.sh
 
